@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dk-first-web
+  namespace: cicd-lab
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: dk-first-web
+  template:
+    metadata:
+      labels:
+        app: dk-first-web
+    spec:
+      containers:
+        - name: web
+          image: localhost:5001/dk-first-web:seed
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 5
