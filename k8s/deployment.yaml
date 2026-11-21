@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: localhost:5001/dk-first-web:seed
+          image: localhost:5001/dk-first-web:68fc946b69d5
           imagePullPolicy: Always
           ports:
             - name: http
